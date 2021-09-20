@@ -1,4 +1,5 @@
-cafense_mobile/.dart_tool
-cafense_mobile/.packages
+/cafense_mobile/.dart_tool/
+.packages
 cafense_mobile/android/
 cafense_mobile/build/
+cafense_mobile/ios/
