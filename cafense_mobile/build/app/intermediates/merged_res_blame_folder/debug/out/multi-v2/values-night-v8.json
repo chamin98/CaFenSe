@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\apps\\CaFenSe\\cafense_mobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "E:\\KDU\\Year 2\\3rd Semester\\Software Engineering Project\\CaFenSe\\cafense_mobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "E:\\apps\\CaFenSe\\cafense_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "E:\\KDU\\Year 2\\3rd Semester\\Software Engineering Project\\CaFenSe\\cafense_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
