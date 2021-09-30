@@ -1,4 +1,0 @@
-#Mon Sep 27 00:15:53 IST 2021
-base.0=E\:\\KDU\\Year 2\\3rd Semester\\Software Engineering Project\\CaFenSe\\cafense_mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
