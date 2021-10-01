@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cafense_mobile/widgets/button1.dart';
 
 class addCard extends StatefulWidget {
   const addCard({Key? key}) : super(key: key);
@@ -60,22 +61,12 @@ class _addCardState extends State<addCard> {
                       height: 30.0,
                     ),
                     cvv(),
-                    FlatButton(
-                        color: Color.fromRGBO(240, 119, 73, 1),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/paymentMethod');
-                        },
-                        child: Text(
-                          'CHECK OUT',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        )),
+                    default_button(
+                      bText: " ADD",
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/orderSuccess');
+                      },
+                    ),
                   ],
                 ),
               ),
