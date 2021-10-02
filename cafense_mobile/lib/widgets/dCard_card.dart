@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dCard.dart';
 
 class dCard_card extends StatefulWidget {
-  final dCard dcard;
-
-  dCard_card({required this.dcard});
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState

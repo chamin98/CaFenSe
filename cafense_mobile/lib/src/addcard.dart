@@ -42,7 +42,7 @@ class _addCardState extends State<addCard> {
             children: [
               cardBar(),
               SizedBox(
-                height: 50,
+                height: 40,
               ),
               Padding(
                 padding: EdgeInsets.all(20.0),
@@ -56,15 +56,22 @@ class _addCardState extends State<addCard> {
                     SizedBox(
                       height: 30.0,
                     ),
-                    validThru(),
-                    SizedBox(
-                      height: 30.0,
+                    Row(
+                      children: [
+                        validThru(),
+                        SizedBox(
+                          width: 30.0,
+                        ),
+                        cvv(),
+                      ],
                     ),
-                    cvv(),
+                    SizedBox(
+                      height: 20,
+                    ),
                     default_button(
                       bText: " ADD",
                       onPressed: () {
-                        Navigator.pushNamed(context, '/orderSuccess');
+                        Navigator.pushNamed(context, '/paymentMethod');
                       },
                     ),
                   ],
@@ -186,18 +193,21 @@ Widget validThru() => Column(
         SizedBox(
           height: 10.0,
         ),
-        TextField(
-          keyboardType: TextInputType.datetime,
-          decoration: InputDecoration(
-              filled: true,
-              fillColor: Color.fromRGBO(230, 216, 205, 1),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
-              hintText: '01/23'),
+        Container(
+          width: 125.0,
+          child: TextField(
+            keyboardType: TextInputType.datetime,
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color.fromRGBO(230, 216, 205, 1),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
+                hintText: '01/23'),
+          ),
         ),
       ],
     );
@@ -219,19 +229,22 @@ Widget cvv() => Column(
         SizedBox(
           height: 10.0,
         ),
-        TextField(
-          keyboardType:
-              TextInputType.numberWithOptions(decimal: false, signed: true),
-          decoration: InputDecoration(
-              filled: true,
-              fillColor: Color.fromRGBO(230, 216, 205, 1),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
-              hintText: '123'),
+        Container(
+          width: 125.0,
+          child: TextField(
+            keyboardType:
+                TextInputType.numberWithOptions(decimal: false, signed: true),
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color.fromRGBO(230, 216, 205, 1),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(231, 112, 16, 1), width: 1)),
+                hintText: '123'),
+          ),
         ),
       ],
     );

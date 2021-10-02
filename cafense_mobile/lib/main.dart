@@ -5,7 +5,7 @@ import 'package:cafense_mobile/routes.dart';
 void main() {
   runApp(
     MaterialApp(
-      initialRoute: '/addcard',
+      initialRoute: '/checkout',
       routes: routes,
     ),
   );
