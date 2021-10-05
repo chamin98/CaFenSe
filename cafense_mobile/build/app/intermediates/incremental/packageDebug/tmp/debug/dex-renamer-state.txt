@@ -1,4 +1,0 @@
-#Sun Oct 03 15:00:01 IST 2021
-base.0=E\:\\apps\\cafense_mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
