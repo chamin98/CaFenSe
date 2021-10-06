@@ -1,25 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class checkoutData {
-  String imgName;
-  int price;
-  String dish;
-
-  checkoutData(
-      {required this.imgName, required this.price, required this.dish});
-}
-
 class checkoutCard extends StatefulWidget {
-  final checkoutData checkData;
+  final String imgName;
+  final int price;
+  final String dish;
 
-  const checkoutCard({Key? key, required this.checkData}) : super(key: key);
+  const checkoutCard({
+    Key? key,
+    required this.imgName,
+    required this.price,
+    required this.dish,
+  }) : super(key: key);
+
   @override
   _checkoutCardState createState() => _checkoutCardState();
 }
 
 class _checkoutCardState extends State<checkoutCard> {
   int num = 1;
+
+  get imgName => imgName;
+
+  get dish => dish;
+
+  get price => price;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class _checkoutCardState extends State<checkoutCard> {
         Card(
       child: Row(
         children: [
-          Image.asset('assets/images/$checkoutData.imgName',
+          Image.asset('assets/images/$imgName',
               height: 70, width: 90, fit: BoxFit.cover),
           Spacer(
             flex: 1,
@@ -37,7 +42,7 @@ class _checkoutCardState extends State<checkoutCard> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "$checkoutData.dish",
+                '$dish',
                 //textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Color.fromRGBO(29, 67, 138, 1),
@@ -48,7 +53,7 @@ class _checkoutCardState extends State<checkoutCard> {
                 ),
               ),
               Text(
-                '$checkoutData.price LKR',
+                '$price LKR',
                 //textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Color.fromRGBO(29, 67, 138, 1),
