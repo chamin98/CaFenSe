@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1042179275082",
+    "project_id": "caffence-9cd4a",
+    "storage_bucket": "caffence-9cd4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042179275082:android:ab05f359705b4e183129b3",
+        "android_client_info": {
+          "package_name": "com.example.cafense_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042179275082-s8quf0q2ggcnk3bk94jcdk9i6dd3n4vj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7-Vm7l-c2YW7deMGOlCJ2lV6LE5SjoFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042179275082-s8quf0q2ggcnk3bk94jcdk9i6dd3n4vj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
