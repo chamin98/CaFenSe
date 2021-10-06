@@ -34,9 +34,13 @@ class _checkOutState extends State<checkOut> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Positioned(child: paymentDetail(context)),
+<<<<<<< HEAD
               //error
               /*checkoutCard(        
                   imgName: "test1.jpg", dish: "Fried \n Rice", price: 180),*/
+=======
+              //checkoutCard(imgName: "test1.jpg", dish: "Fried \n Rice", price: 180),
+>>>>>>> fbd33f976250c4c93b198e1ee186c6822e6f1ea3
               paymentTotal(context),
             ],
           ),

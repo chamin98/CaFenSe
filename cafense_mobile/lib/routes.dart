@@ -1,6 +1,6 @@
+import 'package:cafense_mobile/src/supNlgn/Login.dart';
 import 'package:flutter/widgets.dart';
-import 'package:cafense_mobile/src/login.dart';
-import 'package:cafense_mobile/src/signup.dart';
+import 'package:cafense_mobile/src/supNlgn/signup.dart';
 import 'package:cafense_mobile/src/home.dart';
 import 'package:cafense_mobile/src/menu.dart';
 import 'package:cafense_mobile/src/orderSuccess.dart';
@@ -10,8 +10,8 @@ import 'package:cafense_mobile/src/addcard.dart';
 import 'package:cafense_mobile/src/paymentMethod.dart';
 
 final Map<String, WidgetBuilder> routes = {
-  '/login': (context) => login(),
-  '/signup': (context) => signup(),
+  '/login': (context) => Login(),
+  '/signup': (context) => Signup(),
   '/home': (context) => home(),
   '/menu': (context) => menu1(),
   '/checkout': (context) => checkOut(),
