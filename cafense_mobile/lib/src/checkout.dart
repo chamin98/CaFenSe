@@ -35,9 +35,13 @@ class _checkOutState extends State<checkOut> {
             children: [
               Positioned(child: paymentDetail(context)),
 <<<<<<< HEAD
+<<<<<<< HEAD
               //error
               /*checkoutCard(        
                   imgName: "test1.jpg", dish: "Fried \n Rice", price: 180),*/
+=======
+              //checkoutCard(imgName: "test1.jpg", dish: "Fried \n Rice", price: 180),
+>>>>>>> fbd33f976250c4c93b198e1ee186c6822e6f1ea3
 =======
               //checkoutCard(imgName: "test1.jpg", dish: "Fried \n Rice", price: 180),
 >>>>>>> fbd33f976250c4c93b198e1ee186c6822e6f1ea3

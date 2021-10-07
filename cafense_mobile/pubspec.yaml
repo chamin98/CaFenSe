@@ -54,12 +54,16 @@ flutter:
     - assets/images/Mastercard.png
     - assets/images/test1.jpg
 <<<<<<< HEAD
+<<<<<<< HEAD
     - assets/images/logo1.png
     - assets/images/menuB.png
     - assets/images/menuD.png
     - assets/images/menuL.png
     - assets/images/menuS.png
 
+=======
+    - assets/logo_size_w.jpg
+>>>>>>> fbd33f976250c4c93b198e1ee186c6822e6f1ea3
 =======
     - assets/logo_size_w.jpg
 >>>>>>> fbd33f976250c4c93b198e1ee186c6822e6f1ea3
