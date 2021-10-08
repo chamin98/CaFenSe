@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e7249da5-1f6b-4f45-8ab4-1d65b2f6e42f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cafense_mobile/assets/images/logo1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cafense_mobile/assets/images/menuB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cafense_mobile/assets/images/menuD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cafense_mobile/assets/images/menuL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cafense_mobile/assets/images/menuS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/lib/src/checkout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/lib/src/checkout.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zEWX6XkjpHaxl4sW8bhFYpEEPH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e7249da5-1f6b-4f45-8ab4-1d65b2f6e42f" name="Default Changelist" comment="" />
+      <created>1633713765082</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633713765082</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="100" y="100" width="1720" height="832" key="DiffContextDialog" timestamp="1633713901826">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="100" y="100" width="1720" height="832" key="DiffContextDialog/0.0.1920.1032/1920.0.1280.976@0.0.1920.1032" timestamp="1633713901826" />
+  </component>
+</project>
