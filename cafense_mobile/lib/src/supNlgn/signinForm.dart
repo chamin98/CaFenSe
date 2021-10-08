@@ -1,86 +1,76 @@
-import 'package:cafense_mobile/src/supNlgn/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
 import '../constants.dart';
-import 'ForgetPassowrd.dart';
+import 'authentication.dart';
+import 'extra.dart';
 
-class LoginForm extends StatefulWidget {
+class SigninForm extends StatefulWidget {
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _SigninFormState createState() => _SigninFormState();
 }
 
 bool vissibility = false;
 
-class _LoginFormState extends State<LoginForm> {
+class _SigninFormState extends State<SigninForm> {
   final _formKey = GlobalKey<FormState>();
   late String email;
   late String password;
-  bool remember = false;
+  late String uname;
   final List<String?> errors = [];
 
   @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
-        child: Column(
-          children: [
-            emailfield(),
-            SizedBox(
-              height: 10,
+        child: Column(children: [
+          namefield(),
+          SizedBox(height: 10),
+          emailfield(),
+          SizedBox(height: 10),
+          pwrdfield(),
+          SizedBox(height: 10),
+          FormError(errors: errors),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xfff07749),
             ),
-            pwrdfield(),
-            Row(
-              children: [
-                Checkbox(
-                  value: remember,
-                  activeColor: Color(0xffda3b0e),
-                  onChanged: (value) {
-                    setState(() {
-                      remember = value!;
-                    });
-                  },
-                ),
-                Text("Remember me", style: TextStyle(color: Color(0xffda3b0e))),
-                Spacer(),
-                TextButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return ForgetPassword();
-                        });
-                  },
-                  child: Text(
-                    "Forgot Password",
-                    style: TextStyle(
-                        color: Color(0xffda3b0e),
-                        decoration: TextDecoration.underline),
-                  ),
-                )
-              ],
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xfff07749),
-              ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  context.read<Authentication>().logIn(email: email, password: password);
-                  // if all are valid then go to success screen
-                } else {
-                  for (final item in errors) {
-                    final snackBar = SnackBar(
-                      content: Text(item!),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                }
-              },
-              child: Text('Login'),
-            ),
-          ],
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                context
+                    .read<Authentication>()
+                    .signUp(uname: uname, email: email, password: password);
+              }
+            },
+            child: Text('Signup'),
+          ),
+        ]));
+  }
+
+  TextFormField namefield() {
+    return TextFormField(
+        keyboardType: TextInputType.name,
+        onSaved: (newValue) => uname = newValue!,
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            removeError(error: NamelNullError);
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          labelText: "Username",
+          hintText: "Enter an Username",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 22),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderSide: BorderSide(color: Colors.black45),
+            gapPadding: 10,
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(28),
+              borderSide: BorderSide(color: Colors.black45),
+              gapPadding: 10),
         ));
   }
 
