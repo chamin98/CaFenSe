@@ -14,10 +14,23 @@ bool vissibility = false;
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
   late String email;
   late String password;
   bool remember = false;
   final List<String?> errors = [];
+
+  void initState() {
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +39,7 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           children: [
             emailfield(),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             pwrdfield(),
             Row(
               children: [
@@ -44,20 +55,17 @@ class _LoginFormState extends State<LoginForm> {
                 Text("Remember me", style: TextStyle(color: Color(0xffda3b0e))),
                 Spacer(),
                 TextButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return ForgetPassword();
-                        });
-                  },
-                  child: Text(
-                    "Forgot Password",
-                    style: TextStyle(
-                        color: Color(0xffda3b0e),
-                        decoration: TextDecoration.underline),
-                  ),
-                )
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ForgetPassword();
+                          });
+                    },
+                    child: Text("Forgot Password",
+                        style: TextStyle(
+                            color: Color(0xffda3b0e),
+                            decoration: TextDecoration.underline)))
               ],
             ),
             ElevatedButton(
@@ -66,50 +74,44 @@ class _LoginFormState extends State<LoginForm> {
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
+                  print("Email: ${_emailController.text}");
+                  print("Email: ${_passwordController.text}");
                   _formKey.currentState!.save();
-                  context.read<Authentication>().logIn(email: email, password: password);
-                  // if all are valid then go to success screen
-                } else {
-                  for (final item in errors) {
-                    final snackBar = SnackBar(
-                      content: Text(item!),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
+                  context
+                      .read<Authentication>()
+                      .logIn(email: email, password: password);
                 }
               },
               child: Text('Login'),
             ),
+            SizedBox(height: 10),
+            /*if (errors != null)
+              for (final item in errors)
+                Container(
+                  color: Colors.amberAccent,
+                  child: ListTile(
+                    title: Text(item!),
+                    leading: Icon(Icons.error),
+                    trailing: IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: (){}},
+                    ),
+                  ),
+                )*/
           ],
         ));
   }
 
   TextFormField emailfield() {
     return TextFormField(
+        controller: _emailController,
         keyboardType: TextInputType.emailAddress,
         onSaved: (newValue) => email = newValue!,
-        onChanged: (value) {
-          if (value.isNotEmpty) {
-            removeError(error: EmailNullError);
-          } else if (emailValidatorRegExp.hasMatch(value)) {
-            removeError(error: InvalidEmailError);
-          }
-          return null;
-        },
-        validator: (value) {
-          if (value!.isEmpty) {
-            addError(error: EmailNullError);
-            return "";
-          } else if (!emailValidatorRegExp.hasMatch(value)) {
-            addError(error: InvalidEmailError);
-            return "";
-          }
-          return null;
-        },
+        validator: (value) => value!.isEmpty ? null : EmailNullError,
         decoration: InputDecoration(
           labelText: "Email",
           hintText: "Enter Your Email",
-          suffixIcon: Icon(Icons.mail_outline_rounded),
+          prefixIcon: Icon(Icons.mail_outline_rounded),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 22),
           enabledBorder: OutlineInputBorder(
@@ -126,29 +128,14 @@ class _LoginFormState extends State<LoginForm> {
 
   TextFormField pwrdfield() {
     return TextFormField(
+        controller: _passwordController,
         obscureText: !vissibility,
         onSaved: (newValue) => password = newValue!,
-        onChanged: (value) {
-          if (value.isNotEmpty) {
-            removeError(error: PassNullError);
-          } else if (value.length >= 8) {
-            removeError(error: ShortPassError);
-          }
-          return null;
-        },
-        validator: (value) {
-          if (value!.isEmpty) {
-            addError(error: PassNullError);
-            return "";
-          } else if (value.length < 8) {
-            addError(error: ShortPassError);
-            return "";
-          }
-          return null;
-        },
+        validator: (value) => value!.length < 8 ? ShortPassError : null,
         decoration: InputDecoration(
           labelText: "Password",
           hintText: "Enter Your Password",
+          prefixIcon: Icon(Icons.vpn_key),
           suffixIcon: IconButton(
             icon: Icon(vissibility ? Icons.visibility : Icons.visibility_off),
             onPressed: () {
@@ -169,20 +156,5 @@ class _LoginFormState extends State<LoginForm> {
               borderSide: BorderSide(color: Colors.black45),
               gapPadding: 10),
         ));
-  }
-
-// Error Operations
-  void addError({String? error}) {
-    if (!errors.contains(error))
-      setState(() {
-        errors.add(error);
-      });
-  }
-
-  void removeError({String? error}) {
-    if (errors.contains(error))
-      setState(() {
-        errors.remove(error);
-      });
   }
 }

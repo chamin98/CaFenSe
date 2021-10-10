@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+
+import 'supNlgn/authentication.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -11,8 +14,20 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("This is home"),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Home"),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xfff07749),
+            ),
+            onPressed: () {
+              context.read<Authentication>().signout();
+            },
+            child: Text('Logout'),
+          ),
+        ));
   }
 }

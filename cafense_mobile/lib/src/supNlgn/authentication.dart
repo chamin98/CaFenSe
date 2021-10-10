@@ -1,6 +1,36 @@
+import 'package:cafense_mobile/src/supNlgn/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
-class Authentication {
+class Authentication extends StatefulWidget {
+  const Authentication({ Key? key }) : super(key: key);
+
+  @override
+  _AuthenticationState createState() => _AuthenticationState();
+}
+
+class _AuthenticationState extends State<Authentication> {
+bool isToggle = false;
+
+void toggleScreen() {
+  setState(() {
+    isToggle = !isToggle;
+  });
+}
+
+  @override
+  Widget build(BuildContext context) {
+    if(isToggle){
+      return
+    }else{
+    return Login(toggleScreen:toggleScreen);}
+  }
+}
+
+
+
+
+class Authenticationx {
   final FirebaseAuth _firebaseAuth;
 
   Authentication(this._firebaseAuth);
@@ -26,6 +56,15 @@ class Authentication {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       return "Registered";
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+
+  Future<String?> resetPwrd({required String email}) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return "Verification Send";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }

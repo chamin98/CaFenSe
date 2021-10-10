@@ -40,6 +40,7 @@ class _SigninFormState extends State<SigninForm> {
                 context
                     .read<Authentication>()
                     .signUp(uname: uname, email: email, password: password);
+                Navigator.pop(context);
               }
             },
             child: Text('Signup'),

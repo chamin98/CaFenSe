@@ -3,8 +3,25 @@ import 'package:flutter/material.dart';
 
 import 'LoginForm.dart';
 
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class Login extends StatelessWidget {
+  final Function toggleScreen;
   static String routeName = '/login';
+
+  const Login({Key? key, this.toggleScreen}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +73,7 @@ class Login extends StatelessWidget {
                             Text("Don't have an account?",
                                 style: TextStyle(color: Color(0xffda3b0e))),
                             TextButton(
-                              onPressed: () => Navigator.pushNamed(
-                                  context, Signup.routeName),
+                              onPressed: () => toggleScreen,
                               child: Text(
                                 "Create new one!",
                                 style: TextStyle(
