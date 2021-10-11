@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
-import 'supNlgn/authentication.dart';
+import 'supNlgn/authservices.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _homeState extends State<home> {
               primary: Color(0xfff07749),
             ),
             onPressed: () {
-              context.read<Authentication>().signout();
+              //context.read<Authentication>().signout();
             },
             child: Text('Logout'),
           ),

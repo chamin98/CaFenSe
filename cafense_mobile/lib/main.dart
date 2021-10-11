@@ -1,13 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-import 'package:cafense_mobile/src/supNlgn/authentication.dart';
+import 'package:cafense_mobile/src/supNlgn/authservices.dart';
 import 'package:cafense_mobile/routes.dart';
 
 import 'src/home.dart';
 import 'src/supNlgn/Login.dart';
+import 'src/supNlgn/Register.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,29 +19,50 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          Provider<Authentication>(
-              create: (_) => Authentication(FirebaseAuth.instance)),
-          StreamProvider(
-            create: (context) => context.read<Authentication>().authStatChanges,
-            initialData: null,
-          )
+        providers: [ChangeNotifierProvider<Authservices>.value(value: Authservices()),
+          StreamProvider<User?>.value(value: Authservices().user, initialData: null)
         ],
         child: MaterialApp(
             title: "Caffense",
             theme: ThemeData(primarySwatch: Colors.amber),
-            home: AuthenticationWrapper()));
+            home: Authentication()));
   }
 }
 
-class AuthenticationWrapper extends StatelessWidget {
-  const AuthenticationWrapper({Key? key}) : super(key: key);
+
+class Authentication extends StatefulWidget {
+  const Authentication({Key? key}) : super(key: key);
+
+  @override
+  _AuthenticationState createState() => _AuthenticationState();
+}
+
+class _AuthenticationState extends State<Authentication> {
+  bool isToggle = false;
+
+  void toggleScreen() {
+    setState(() {
+      isToggle = !isToggle;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseUser = context.watch<User?>();
+    if (isToggle) {
+      return Register(toggleScreen: toggleScreen);
+    } else {
+      return Login(toggleScreen: toggleScreen);
+    }
+  }
+}
 
-    if (FirebaseUser != null) {
+class Wrapper extends StatelessWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    if (User != null) {
       return home();
     } else
       return Login();

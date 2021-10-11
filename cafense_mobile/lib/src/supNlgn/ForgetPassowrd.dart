@@ -1,10 +1,8 @@
-import 'package:cafense_mobile/src/supNlgn/Login.dart';
-import 'package:cafense_mobile/src/supNlgn/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import 'authservices.dart';
 import 'extra.dart';
 
 AlertDialog ForgetPassword() {
@@ -35,56 +33,40 @@ class ForgotPassForm extends StatefulWidget {
 
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
-  List<String> errors = [];
-  late String email;
+  late TextEditingController _emailController;
+  
+  void initState() {
+    _emailController = TextEditingController();
+    super.initState();
+  }
+
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<Authservices>(context);
     return Form(
         key: _formKey,
         child: Column(children: [
           TextFormField(
               keyboardType: TextInputType.emailAddress,
-              onSaved: (newValue) => email = newValue!,
-              onChanged: (value) {
-                if (value.isNotEmpty && errors.contains(EmailNullError)) {
-                  setState(() {
-                    errors.remove(EmailNullError);
-                  });
-                } else if (emailValidatorRegExp.hasMatch(value) &&
-                    errors.contains(InvalidEmailError)) {
-                  setState(() {
-                    errors.remove(InvalidEmailError);
-                  });
-                }
-                return null;
-              },
-              validator: (value) {
-                if (value!.isEmpty && !errors.contains(EmailNullError)) {
-                  setState(() {
-                    errors.add(EmailNullError);
-                  });
-                } else if (!emailValidatorRegExp.hasMatch(value) &&
-                    !errors.contains(InvalidEmailError)) {
-                  setState(() {
-                    errors.add(InvalidEmailError);
-                  });
-                }
-                return null;
-              },
+              validator: (value) =>
+                  value!.isNotEmpty ? null : "Please Enter your email",
               decoration: InputDecoration(
                   labelText: "Email",
                   hintText: "Enter your email",
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   icon: Icon(Icons.mail))),
           SizedBox(height: 10),
-          FormError(errors: errors),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Color(0xfff07749),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  context.read<Authentication>().resetPwrd(email: email);
+                  await loginProvider.resetPwrd(email: _emailController.text.trim());
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -92,8 +74,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                             content: const Text('Please check your emails'),
                             actions: <Widget>[
                               TextButton(
-                                onPressed: () => Navigator.pushNamed(
-                                    context, Login.routeName),
+                                onPressed:
+                                    () {}, //=> Navigator.pushNamed(context, Login.routeName),
                                 child: const Text(
                                   'OK',
                                   style: TextStyle(color: Color(0xffda3b0e)),
