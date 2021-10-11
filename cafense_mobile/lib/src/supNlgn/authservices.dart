@@ -9,6 +9,9 @@ class Authservices with ChangeNotifier {
   String? get errorMessage => _errorMessage;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
+  Stream<User?> get user =>
+      firebaseAuth.authStateChanges().map((event) => event);
+
   Future logIn(String email, String password) async {
     setLoading(true);
     try {
@@ -54,7 +57,7 @@ class Authservices with ChangeNotifier {
     }
   }
 
-  Future<void> signout() async {
+  Future signout() async {
     await firebaseAuth.signOut();
   }
 
@@ -67,7 +70,4 @@ class Authservices with ChangeNotifier {
     _errorMessage = message;
     notifyListeners();
   }
-
-  Stream<User> get user =>
-      firebaseAuth.authStateChanges().map((event) => event!);
 }

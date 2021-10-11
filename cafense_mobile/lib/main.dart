@@ -19,16 +19,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [ChangeNotifierProvider<Authservices>.value(value: Authservices()),
-          StreamProvider<User?>.value(value: Authservices().user, initialData: null)
+        providers: [
+          ChangeNotifierProvider<Authservices>.value(value: Authservices()),
+          StreamProvider<User?>.value(
+              value: Authservices().user, initialData: null)
         ],
         child: MaterialApp(
             title: "Caffense",
             theme: ThemeData(primarySwatch: Colors.amber),
-            home: Authentication()));
+            home: Wrapper()));
   }
 }
-
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -61,10 +62,10 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    if (User != null) {
+    final user = Provider.of<User?>(context);
+    if (user != null) {
       return home();
     } else
-      return Login();
+      return Authentication();
   }
 }

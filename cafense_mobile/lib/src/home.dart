@@ -14,6 +14,7 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<Authservices>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text("Home"),
@@ -23,9 +24,7 @@ class _homeState extends State<home> {
             style: ElevatedButton.styleFrom(
               primary: Color(0xfff07749),
             ),
-            onPressed: () {
-              //context.read<Authentication>().signout();
-            },
+            onPressed: () => loginProvider.signout(),
             child: Text('Logout'),
           ),
         ));

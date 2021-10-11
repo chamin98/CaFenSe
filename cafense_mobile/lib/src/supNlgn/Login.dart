@@ -15,7 +15,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-   TextEditingController? _emailController;
+  TextEditingController? _emailController;
   TextEditingController? _passwordController;
 
   bool remember = false;
@@ -100,68 +100,65 @@ class _LoginState extends State<Login> {
     final loginProvider = Provider.of<Authservices>(context);
     return Form(
         key: _formKey,
-        child: Column(
-          children: [
-            emailfield(),
-            SizedBox(height: 10),
-            pwrdfield(),
-            Row(
-              children: [
-                Checkbox(
-                    value: remember,
-                    activeColor: Color(0xffda3b0e),
-                    onChanged: (value) {
-                      setState(() {
-                        remember = value!;
-                      });
-                    }),
-                Text("Remember me", style: TextStyle(color: Color(0xffda3b0e))),
-                Spacer(),
-                TextButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return ForgetPassword();
-                          });
-                    },
-                    child: Text("Forgot Password",
-                        style: TextStyle(
-                            color: Color(0xffda3b0e),
-                            decoration: TextDecoration.underline)))
-              ],
+        child: Column(children: [
+          emailfield(),
+          SizedBox(height: 10),
+          pwrdfield(),
+          Row(
+            children: [
+              Checkbox(
+                  value: remember,
+                  activeColor: Color(0xffda3b0e),
+                  onChanged: (value) {
+                    setState(() {
+                      remember = value!;
+                    });
+                  }),
+              Text("Remember me", style: TextStyle(color: Color(0xffda3b0e))),
+              Spacer(),
+              TextButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ForgetPassword();
+                        });
+                  },
+                  child: Text("Forgot Password",
+                      style: TextStyle(
+                          color: Color(0xffda3b0e),
+                          decoration: TextDecoration.underline)))
+            ],
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xfff07749),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xfff07749),
-              ),
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  print("Email: ${_emailController!.text}");
-                  print("Email: ${_passwordController!.text}");
-                  await loginProvider.logIn(_emailController!.text.trim(),
-                      _passwordController!.text.trim());
-                }
-              },
-              child: loginProvider.isLoading
-                  ? CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white))
-                  : Text('Login'),
-            ),
-            SizedBox(height: 10),
-            if (loginProvider.errorMessage != null)
-             Container(
-                  color: Colors.amberAccent,
-                  child: ListTile(
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                print("Email: ${_emailController!.text}");
+                print("Email: ${_passwordController!.text}");
+                await loginProvider.logIn(_emailController!.text.trim(),
+                    _passwordController!.text.trim());
+              }
+            },
+            child: loginProvider.isLoading
+                ? CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.white))
+                : Text('Login'),
+          ),
+          SizedBox(height: 10),
+          if (loginProvider.errorMessage != null)
+            Container(
+                color: Colors.amberAccent,
+                child: ListTile(
                     title: Text(loginProvider.errorMessage!),
                     leading: Icon(Icons.error),
                     trailing: IconButton(
                       icon: Icon(Icons.close),
-                      onPressed: ()=>loginProvider.setMessage(null),
-                    )
-                  )
-                )
-          ]
-        ));
+                      onPressed: () => loginProvider.setMessage(null),
+                    )))
+        ]));
   }
 
   TextFormField emailfield() {

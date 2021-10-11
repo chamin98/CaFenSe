@@ -13,24 +13,27 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
-  late TextEditingController _usernameController;
+  TextEditingController? _emailController;
+  TextEditingController? _passwordController;
+  TextEditingController? _usernameController;
 
   bool remember = false;
   bool vissibility = false;
 
   void initState() {
     _usernameController = TextEditingController();
+ 
     _emailController = TextEditingController();
+  
     _passwordController = TextEditingController();
+ 
     super.initState();
   }
 
   void dispose() {
-    _usernameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
+    _usernameController!.dispose();
+    _emailController!.dispose();
+    _passwordController!.dispose();
     super.dispose();
   }
 
@@ -112,23 +115,26 @@ class _RegisterState extends State<Register> {
               ),
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  print("Email: ${_emailController.text}");
-                  print("Email: ${_passwordController.text}");
+                  print("Email: ${_emailController!.text}");
+                  print("Email: ${_passwordController!.text}");
                   await loginProvider.register(
-                      _usernameController.text.trim(),
-                      _emailController.text.trim(),
-                      _passwordController.text.trim());
+                      _usernameController!.text.trim(),
+                      _emailController!.text.trim(),
+                      _passwordController!.text.trim());
                   widget.toggleScreen!();
                 }
               },
               child: loginProvider.isLoading
-                  ? CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white))
+                  ? CircularProgressIndicator(
+                      valueColor:
+                          new AlwaysStoppedAnimation<Color>(Colors.white))
                   : Text('Signup'))
         ]));
   }
 
   TextFormField namefield() {
     return TextFormField(
+      controller: _usernameController,
         keyboardType: TextInputType.name,
         validator: (value) =>
             value!.isNotEmpty ? null : "Please Enter your Username",
@@ -151,6 +157,7 @@ class _RegisterState extends State<Register> {
 
   TextFormField emailfield() {
     return TextFormField(
+      controller: _emailController,
         keyboardType: TextInputType.emailAddress,
         validator: (value) =>
             value!.isNotEmpty ? null : "Please Enter your email",
@@ -173,6 +180,7 @@ class _RegisterState extends State<Register> {
 
   TextFormField pwrdfield() {
     return TextFormField(
+      controller: _passwordController,
         obscureText: !vissibility,
         validator: (value) =>
             value!.length < 6 ? "Password is too short" : null,
