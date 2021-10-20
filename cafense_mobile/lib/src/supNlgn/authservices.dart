@@ -35,6 +35,7 @@ class Authservices with ChangeNotifier {
     try {
       UserCredential authResult = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
+      await authResult.user!.updateDisplayName(uname);
       User? user = authResult.user;
       setLoading(false);
       return user;
@@ -48,12 +49,13 @@ class Authservices with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String?> resetPwrd({required String email}) async {
+  Future resetPwrd({required String email}) async {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);
-      return "Verification Send";
+    } on SocketException {
+      setMessage("No Internet Connection");
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      setMessage(e.message);
     }
   }
 

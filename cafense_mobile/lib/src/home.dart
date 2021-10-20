@@ -17,7 +17,9 @@ class _homeState extends State<home> {
     final loginProvider = Provider.of<Authservices>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text("Home"),
+          title: Image.asset('assets/images/logo1.png'),
+          backgroundColor: Color(0xffffab5c),
+          elevation: 0,
         ),
         body: Center(
           child: ElevatedButton(

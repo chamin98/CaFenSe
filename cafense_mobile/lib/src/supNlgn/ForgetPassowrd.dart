@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import 'authservices.dart';
-import 'extra.dart';
 
-AlertDialog ForgetPassword() {
+AlertDialog forgetPassword() {
   return AlertDialog(
       content: SingleChildScrollView(
           child: Container(
@@ -34,7 +32,7 @@ class ForgotPassForm extends StatefulWidget {
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _emailController;
-  
+
   void initState() {
     _emailController = TextEditingController();
     super.initState();
@@ -44,6 +42,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
     _emailController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<Authservices>(context);
@@ -51,6 +50,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         key: _formKey,
         child: Column(children: [
           TextFormField(
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               validator: (value) =>
                   value!.isNotEmpty ? null : "Please Enter your email",
@@ -66,7 +66,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               ),
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  await loginProvider.resetPwrd(email: _emailController.text.trim());
+                  await loginProvider.resetPwrd(
+                      email: _emailController.text.trim());
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -74,8 +75,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                             content: const Text('Please check your emails'),
                             actions: <Widget>[
                               TextButton(
-                                onPressed:
-                                    () {}, //=> Navigator.pushNamed(context, Login.routeName),
+                                onPressed: () => Navigator.pop(context),
                                 child: const Text(
                                   'OK',
                                   style: TextStyle(color: Color(0xffda3b0e)),

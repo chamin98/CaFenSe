@@ -22,11 +22,11 @@ class _RegisterState extends State<Register> {
 
   void initState() {
     _usernameController = TextEditingController();
- 
+
     _emailController = TextEditingController();
-  
+
     _passwordController = TextEditingController();
- 
+
     super.initState();
   }
 
@@ -121,7 +121,17 @@ class _RegisterState extends State<Register> {
                       _usernameController!.text.trim(),
                       _emailController!.text.trim(),
                       _passwordController!.text.trim());
-                  widget.toggleScreen!();
+                  showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Verification Send'),
+                              actions: <Widget>[
+                                TextButton(
+                                    onPressed: () => widget.toggleScreen!(),
+                                    child: const Text('OK',
+                                        style: TextStyle(
+                                            color: Color(0xffda3b0e))))
+                              ]));
                 }
               },
               child: loginProvider.isLoading
@@ -134,7 +144,7 @@ class _RegisterState extends State<Register> {
 
   TextFormField namefield() {
     return TextFormField(
-      controller: _usernameController,
+        controller: _usernameController,
         keyboardType: TextInputType.name,
         validator: (value) =>
             value!.isNotEmpty ? null : "Please Enter your Username",
@@ -157,7 +167,7 @@ class _RegisterState extends State<Register> {
 
   TextFormField emailfield() {
     return TextFormField(
-      controller: _emailController,
+        controller: _emailController,
         keyboardType: TextInputType.emailAddress,
         validator: (value) =>
             value!.isNotEmpty ? null : "Please Enter your email",
@@ -180,7 +190,7 @@ class _RegisterState extends State<Register> {
 
   TextFormField pwrdfield() {
     return TextFormField(
-      controller: _passwordController,
+        controller: _passwordController,
         obscureText: !vissibility,
         validator: (value) =>
             value!.length < 6 ? "Password is too short" : null,

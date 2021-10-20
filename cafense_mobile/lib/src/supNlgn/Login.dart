@@ -121,7 +121,7 @@ class _LoginState extends State<Login> {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return ForgetPassword();
+                          return forgetPassword();
                         });
                   },
                   child: Text("Forgot Password",
