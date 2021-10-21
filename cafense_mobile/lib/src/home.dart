@@ -1,8 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/src/provider.dart';
+import 'package:cafense_mobile/src/favorite.dart';
+import 'package:cafense_mobile/src/account.dart';
 
-import 'supNlgn/authservices.dart';
+class bottomNavbar extends StatefulWidget {
+  const bottomNavbar({Key? key}) : super(key: key);
+
+  @override
+  _bottomNavbarState createState() => _bottomNavbarState();
+}
+
+class _bottomNavbarState extends State<bottomNavbar> {
+  int selectedPage = 0;
+
+  final _pageOptions = [home(), favorite(), account()];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pageOptions[selectedPage],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "HOT"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: "Favourites"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Account"),
+        ],
+        currentIndex: selectedPage,
+        onTap: (index) {
+          setState(() {
+            selectedPage = index;
+          });
+        },
+        backgroundColor: Color.fromRGBO(240, 119, 73, 1),
+        selectedItemColor: Color.fromRGBO(255, 255, 255, 1),
+        unselectedItemColor: Color.fromRGBO(255, 255, 255, 0.74),
+      ),
+    );
+  }
+}
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -14,21 +50,8 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
-    final loginProvider = Provider.of<Authservices>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Image.asset('assets/images/logo1.png'),
-          backgroundColor: Color(0xffffab5c),
-          elevation: 0,
-        ),
-        body: Center(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Color(0xfff07749),
-            ),
-            onPressed: () => loginProvider.signout(),
-            child: Text('Logout'),
-          ),
-        ));
+      body: Text('Home'),
+    );
   }
 }

@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cafense_admin",
+            "cwd": "cafense_admin",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "cafense_admin (profile mode)",
+            "cwd": "cafense_admin",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "cafense_mobile",
+            "cwd": "cafense_mobile",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "cafense_mobile (profile mode)",
+            "cwd": "cafense_mobile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        }
+    ]
+}
