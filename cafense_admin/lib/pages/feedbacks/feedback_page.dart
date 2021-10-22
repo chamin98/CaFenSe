@@ -21,7 +21,7 @@ class FeedbackPage extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 24, fontWeight: FontWeight.bold)))
           ])),
-      SizedBox(height: 15),
+      const SizedBox(height: 15),
       FeedbackTable()
     ]));
   }

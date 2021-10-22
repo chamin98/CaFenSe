@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 AlertDialog addFood() {
   return AlertDialog(
@@ -58,12 +60,12 @@ class _addFoodFormState extends State<addFoodForm> {
                       labelText: "Enter Food Name",
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(28),
-                        borderSide: BorderSide(color: Colors.black45),
+                        borderSide: const BorderSide(color: Colors.black45),
                         gapPadding: 10,
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(28),
-                          borderSide: BorderSide(color: Colors.black45)),
+                          borderSide: const BorderSide(color: Colors.black45)),
                     )))
           ]),
           const SizedBox(height: 10),
@@ -82,6 +84,7 @@ class _addFoodFormState extends State<addFoodForm> {
                     },
                     items: <String>[
                       "Lunch",
+                      "Breakfast",
                       "Bevarages",
                       "Fast Food",
                       "Desserts",
@@ -95,7 +98,7 @@ class _addFoodFormState extends State<addFoodForm> {
           Row(children: [
             const Text("Price : "),
             Flexible(
-                child: TextField(
+                child: TextFormField(
                     controller: _priceController,
                     decoration: InputDecoration(
                         labelText: "Enter the price",
@@ -108,13 +111,17 @@ class _addFoodFormState extends State<addFoodForm> {
           ]),
           const SizedBox(height: 20),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,   
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Color(0xfff07749)),
-                  onPressed: () {},
+                  onPressed: () {
+                    firebaseAddFood(_nameController!.text.trim(),
+                        double.parse(_priceController!.text), dropdownValue);
+                    Navigator.pop(context);
+                  },
                   child: const Text("Save")),
-              SizedBox(width: 30),
+              const SizedBox(width: 30),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Color(0xfff07749)),
                   onPressed: () => Navigator.pop(context),
@@ -122,5 +129,17 @@ class _addFoodFormState extends State<addFoodForm> {
             ],
           )
         ]));
+  }
+
+  Future<void> firebaseAddFood(fname, fprice, ftype) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(ftype)
+          .doc(fname)
+          .set({'price': fprice, 'availability': false}).then((value) =>
+              Fluttertoast.showToast(msg: "succesfully adde $fname"));
+    } on FirebaseException catch (e) {
+      Fluttertoast.showToast(msg: e.message!);
+    }
   }
 }

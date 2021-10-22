@@ -18,7 +18,7 @@ class LoginForm extends GetWidget<Authservices> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(padding: new EdgeInsets.all(25.0)),
+                        const Padding(padding: EdgeInsets.all(25.0)),
                         const SizedBox(height: 10),
                         const Text("LOGIN",
                             style: TextStyle(
@@ -90,17 +90,17 @@ class LoginForm extends GetWidget<Authservices> {
         decoration: InputDecoration(
           labelText: "Email",
           hintText: "Enter Your Email",
-          prefixIcon: Icon(Icons.mail_outline_rounded),
+          prefixIcon: const Icon(Icons.mail_outline_rounded),
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 22),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 42, vertical: 22),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(28),
-            borderSide: BorderSide(color: Colors.black45),
+            borderSide: const BorderSide(color: Colors.black45),
             gapPadding: 10,
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(28),
-              borderSide: BorderSide(color: Colors.black45),
+              borderSide: const BorderSide(color: Colors.black45),
               gapPadding: 10),
         ));
   }
@@ -114,17 +114,17 @@ class LoginForm extends GetWidget<Authservices> {
         decoration: InputDecoration(
           labelText: "Password",
           hintText: "Enter Your Password",
-          prefixIcon: Icon(Icons.vpn_key),
+          prefixIcon: const Icon(Icons.vpn_key),
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 22),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 42, vertical: 22),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(28),
-            borderSide: BorderSide(color: Colors.black45),
+            borderSide: const BorderSide(color: Colors.black45),
             gapPadding: 10,
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(28),
-              borderSide: BorderSide(color: Colors.black45),
+              borderSide: const BorderSide(color: Colors.black45),
               gapPadding: 10),
         ));
   }
