@@ -38,7 +38,7 @@ class InfoCard extends StatelessWidget {
                       ))
                     ],
                   ),
-                  Expanded(child: Container()),
+                  const Spacer(),
                   RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(children: [
@@ -57,7 +57,7 @@ class InfoCard extends StatelessWidget {
                                     ? Color(0xffffab5c)
                                     : Color(0xffdde2ff))),
                       ])),
-                  Expanded(child: Container())
+                  const Spacer(),
                 ]))));
   }
 }

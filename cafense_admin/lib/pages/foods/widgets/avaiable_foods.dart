@@ -2,7 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'add_food.dart';
+import 'package:cafense_admin/pages/foods/widgets/add_food.dart';
 
 class AvailableFoodsTable extends StatefulWidget {
   const AvailableFoodsTable({Key? key}) : super(key: key);

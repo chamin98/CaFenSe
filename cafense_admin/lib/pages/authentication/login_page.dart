@@ -1,7 +1,6 @@
-import 'package:cafense_admin/routing/routes.dart';
+import 'package:cafense_admin/helpers/responsiveness.dart';
+import 'package:cafense_admin/pages/authentication/widgets/login_form.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -9,106 +8,50 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Container(
-                constraints: BoxConstraints(maxWidth: 400),
-                padding: EdgeInsets.all(24),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: Image.asset("assets/logo.png"),
-                          ),
-                          Expanded(child: Container()),
-                        ],
-                      ),
-                      SizedBox(height: 30),
-                      Row(children: [
-                        Text("Login",
-                            style: GoogleFonts.roboto(
-                                fontSize: 30, fontWeight: FontWeight.bold))
-                      ]),
-                      SizedBox(height: 10),
-                      Row(children: [
-                        Text(
-                          "Welcome back to the admin panel.",
-                          style: TextStyle(color: Colors.grey),
-                        )
-                      ]),
-                      SizedBox(height: 15),
-                      TextField(
-                          decoration: InputDecoration(
-                              labelText: "Email",
-                              hintText: "abc@domain.com",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20)))),
-                      SizedBox(height: 15),
-                      TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              labelText: "Password",
-                              hintText: "123",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20)))),
-                      SizedBox(height: 15),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Container(
+                padding: EdgeInsets.all(10),
+                child: Row(children: [
+                  Image.asset("assets/full_logo.png", scale: 2),
+                  const Spacer(),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text("About",
+                          style: TextStyle(color: Colors.black))),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text("Contact us",
+                          style: TextStyle(color: Colors.black)))
+                ]))),
+        body: ResponsiveWidget.isLargeScreen(context)
+            ? Stack(children: [
+                Positioned(
+                    bottom: -(MediaQuery.of(context).size.width / 8),
+                    left: -(MediaQuery.of(context).size.height / 8),
+                    child: ClipOval(
+                        child: Container(padding: EdgeInsets.zero,
+                            width: MediaQuery.of(context).size.width * 7 / 8,
+                            height: MediaQuery.of(context).size.height * 19 / 20,
+                            color: Color(0xffffedde)))),
+                Row(children: [
+                  Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: Center(child: LoginForm())),
+                  Expanded(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(children: [
-                              Checkbox(value: true, onChanged: (value) {}),
-                              Text("Remember me")
-                            ]),
-                            Text("Forget Password")
-                          ]),
-                      SizedBox(height: 15),
-                      InkWell(
-                          onTap: () {
-                            Get.offAllNamed(rootRoute);
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  color: Color(0xffa4a6b3),
-                                  borderRadius: BorderRadius.circular(20)),
-                              alignment: Alignment.center,
-                              width: double.maxFinite,
-                              padding: EdgeInsets.symmetric(vertical: 16),
-                              child: Text("Login",
-                                  style: TextStyle(color: Colors.white)))),
-                      SizedBox(height: 15),
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(text: "Do not have admin credentials? "),
-                        TextSpan(
-                            text: "Request Credentials! ",
-                            style: TextStyle(color: Color(0xffa4a6b3)))
+                        const Text("Welcome To",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                        Image.asset("assets/full_logo.png")
                       ]))
-                    ]))));
+                ])
+              ])
+            : Center(child: LoginForm()));
   }
 }
-    
-    
-    
-    
-    
-    /* Container(
-      color: Colors.white,
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              Positioned(
-                  child: Container(
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xffa4a6b3)),
-              ))
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
- */

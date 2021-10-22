@@ -1,9 +1,10 @@
+import 'package:cafense_admin/pages/feedbacks/widgets/feedback_table.dart';
 import 'package:cafense_admin/controllers/controllers.dart';
 import 'package:cafense_admin/helpers/responsiveness.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'widgets/feedback_table.dart';
+
 
 class FeedbackPage extends StatelessWidget {
   const FeedbackPage({Key? key}) : super(key: key);

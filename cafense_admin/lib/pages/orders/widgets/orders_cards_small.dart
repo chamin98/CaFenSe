@@ -1,5 +1,6 @@
+import 'package:cafense_admin/pages/orders/widgets/info_card_small.dart';
 import 'package:flutter/material.dart';
-import 'info_card_small.dart';
+
 
 class OrdersCardsSmallScreen extends StatelessWidget {
   @override

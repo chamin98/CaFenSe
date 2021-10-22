@@ -1,6 +1,7 @@
+import 'package:cafense_admin/pages/orders/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 
-import 'info_card.dart';
+
 
 class OrdersCardsMediumScreen extends StatelessWidget {
   @override

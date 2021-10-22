@@ -2,11 +2,10 @@ import 'package:cafense_admin/controllers/controllers.dart';
 import 'package:cafense_admin/helpers/responsiveness.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'widgets/available_orders.dart';
-import 'widgets/orders_cards_large.dart';
-import 'widgets/orders_cards_medium.dart';
-import 'widgets/orders_cards_small.dart';
+import 'package:cafense_admin/pages/orders/widgets/available_orders.dart';
+import 'package:cafense_admin/pages/orders/widgets/orders_cards_large.dart';
+import 'package:cafense_admin/pages/orders/widgets/orders_cards_medium.dart';
+import 'package:cafense_admin/pages/orders/widgets/orders_cards_small.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({Key? key}) : super(key: key);

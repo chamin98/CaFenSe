@@ -3,7 +3,7 @@ import 'package:cafense_admin/pages/foods/foods_page.dart';
 import 'package:cafense_admin/pages/orders/orders_page.dart';
 import 'package:flutter/material.dart';
 
-import 'routes.dart';
+import 'package:cafense_admin/routing/routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

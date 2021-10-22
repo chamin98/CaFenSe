@@ -3,7 +3,7 @@ import 'package:cafense_admin/helpers/responsiveness.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'widgets/avaiable_foods.dart';
+import 'package:cafense_admin/pages/foods/widgets/avaiable_foods.dart';
 
 class FoodsPage extends StatelessWidget {
   const FoodsPage({Key? key}) : super(key: key);

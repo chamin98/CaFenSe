@@ -1,7 +1,7 @@
 import 'package:cafense_admin/helpers/responsiveness.dart';
 import 'package:flutter/material.dart';
 
-import 'menu_item.dart';
+import 'package:cafense_admin/widgets/menu_item.dart';
 
 class SideMenuItem extends StatelessWidget {
   final String itemName;
