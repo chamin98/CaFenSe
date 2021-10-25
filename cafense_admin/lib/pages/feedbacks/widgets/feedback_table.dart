@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FeedbackTable extends StatelessWidget {
   final Stream<QuerySnapshot> _usersStream =
@@ -12,18 +12,17 @@ class FeedbackTable extends StatelessWidget {
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return const Text('Something went wrong');
+            Fluttertoast.showToast(
+                timeInSecForIosWeb: 30, msg: 'Something went wrong');
           }
-
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LinearProgressIndicator();
           }
-
           return Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(
-                    color: Color(0xffa4a6b3).withOpacity(.4), width: .5),
+                    color: const Color(0xffa4a6b3).withOpacity(.4), width: .5),
                 boxShadow: [
                   BoxShadow(
                       offset: Offset(0, 6),
@@ -45,21 +44,21 @@ class FeedbackTable extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     padding: const EdgeInsets.all(1.2),
                     child: DataTable(
-                            columns: const [
-                              DataColumn(label: Text("Feedback")),
-                              DataColumn(label: Text('Username')),
-                              DataColumn(label: Text('Food'))
-                            ],
-                            rows: snapshot.data!.docs
-                                .map((DocumentSnapshot document) {
-                              Map<String, dynamic> data =
-                                  document.data()! as Map<String, dynamic>;
-                              return DataRow(cells: [
-                                DataCell(Text(data['feedback'])),
-                                DataCell(Text(data['user'])),
-                                DataCell(Text(data['food'])),
-                              ]);
-                            }).toList()))
+                        columns: const [
+                          DataColumn(label: Text("Feedback")),
+                          DataColumn(label: Text('Username')),
+                          DataColumn(label: Text('Food'))
+                        ],
+                        rows: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          return DataRow(cells: [
+                            DataCell(Text(data['feedback'])),
+                            DataCell(Text(data['user'])),
+                            DataCell(Text(data['food'])),
+                          ]);
+                        }).toList()))
               ]));
         });
   }

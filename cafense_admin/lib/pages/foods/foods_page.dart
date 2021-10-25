@@ -18,11 +18,11 @@ class FoodsPage extends StatelessWidget {
                   margin: EdgeInsets.only(
                       top: ResponsiveWidget.isSmallScreen(context) ? 56 : 8),
                   child: Text(menuController.activeItem.value,
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)))
+                      style: const TextStyle(
+                          fontSize: 24, fontWeight: FontWeight.bold)))
             ])),
-        SizedBox(height: 15),
-        Expanded(child: AvailableFoodsTable())
+        const SizedBox(height: 15),
+        const Expanded(child: AvailableFoodsTable())
       ],
     ));
   }

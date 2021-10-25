@@ -21,7 +21,7 @@ class OrdersPage extends StatelessWidget {
                       top: ResponsiveWidget.isSmallScreen(context) ? 56 : 8),
                   child: Text(
                     menuController.activeItem.value,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ))
             ])),
         Expanded(
@@ -32,8 +32,8 @@ class OrdersPage extends StatelessWidget {
             OrdersCardsMediumScreen()
           else
             OrdersCardsSmallScreen(),
-          SizedBox(height: 10),
-          AvailableOrdersTable(),
+           const SizedBox(height: 10),
+        AvailableOrdersTable(),
         ]))
       ],
     ));

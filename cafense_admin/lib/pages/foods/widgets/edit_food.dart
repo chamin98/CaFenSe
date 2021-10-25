@@ -2,44 +2,34 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-AlertDialog addFood() {
-  return AlertDialog(
-      content: SingleChildScrollView(
-          child: Container(
-              height: 400,
-              width: 500,
-              padding: const EdgeInsets.all(10),
-              child: Column(children: [
-                const Text("Add New Food",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Row(children: [
-                  Expanded(child: Container(color: Colors.black, height: 5))
-                ]),
-                const SizedBox(height: 20.0),
-                Padding(padding: const EdgeInsets.all(25), child: addFoodForm())
-              ]))));
-}
+class editFoodForm extends StatefulWidget {
+  final String foodname;
+  final double price;
+  final String type;
+  const editFoodForm(
+      {Key? key,
+      required this.foodname,
+      required this.price,
+      required this.type})
+      : super(key: key);
 
-class addFoodForm extends StatefulWidget {
   @override
-  _addFoodFormState createState() => _addFoodFormState();
+  _editFoodFormState createState() => _editFoodFormState();
 }
 
-class _addFoodFormState extends State<addFoodForm> {
+class _editFoodFormState extends State<editFoodForm> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController? _nameController;
-  String? dropdownValue;
   TextEditingController? _priceController;
 
+  @override
   void initState() {
     _nameController = TextEditingController();
     _priceController = TextEditingController();
     super.initState();
   }
 
+  @override
   void dispose() {
     _nameController!.dispose();
     _priceController!.dispose();
@@ -48,6 +38,8 @@ class _addFoodFormState extends State<addFoodForm> {
 
   @override
   Widget build(BuildContext context) {
+    _nameController?.text = widget.foodname;
+    _priceController?.text = widget.price.toString();
     return Form(
         key: _formKey,
         child: Column(children: [
@@ -57,7 +49,7 @@ class _addFoodFormState extends State<addFoodForm> {
                 child: TextField(
                     controller: _nameController,
                     decoration: InputDecoration(
-                      labelText: "Enter Food Name",
+                      labelText: _nameController?.text,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(28),
                         borderSide: const BorderSide(color: Colors.black45),
@@ -70,38 +62,12 @@ class _addFoodFormState extends State<addFoodForm> {
           ]),
           const SizedBox(height: 10),
           Row(children: [
-            const Text("Category : "),
-            Flexible(
-                child: DropdownButton(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    style: const TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: <String>[
-                      "Lunch",
-                      "Breakfast",
-                      "Bevarages",
-                      "Fast Food",
-                      "Desserts",
-                      "Other"
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList()))
-          ]),
-          const SizedBox(height: 10),
-          Row(children: [
             const Text("Price : "),
             Flexible(
                 child: TextFormField(
                     controller: _priceController,
                     decoration: InputDecoration(
-                        labelText: "Enter the price",
+                        labelText: _priceController?.text,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(28),
                             borderSide: BorderSide(color: Colors.black45)),
@@ -116,8 +82,8 @@ class _addFoodFormState extends State<addFoodForm> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Color(0xfff07749)),
                   onPressed: () {
-                    firebaseAddFood(_nameController!.text.trim(),
-                        double.parse(_priceController!.text), dropdownValue);
+                    firebaseEditFood(_nameController!.text.trim(),
+                        double.parse(_priceController!.text), widget.type);
                     Navigator.pop(context);
                   },
                   child: const Text("Save")),
@@ -131,14 +97,14 @@ class _addFoodFormState extends State<addFoodForm> {
         ]));
   }
 
-  Future<void> firebaseAddFood(fname, fprice, ftype) async {
+  Future<void> firebaseEditFood(fname, fprice, ftype) async {
     try {
       await FirebaseFirestore.instance
           .collection(ftype)
           .doc(fname)
           .set({'price': fprice, 'availability': false}).then((value) =>
               Fluttertoast.showToast(
-                  timeInSecForIosWeb: 10, msg: "succesfully adde $fname"));
+                  timeInSecForIosWeb: 10, msg: "succesfully changed $fname"));
     } on FirebaseException catch (e) {
       Fluttertoast.showToast(timeInSecForIosWeb: 30, msg: e.message!);
     }
