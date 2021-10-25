@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7249da5-1f6b-4f45-8ab4-1d65b2f6e42f" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/CaFenSe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CaFenSe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafense_admin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_admin/pubspec.lock" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/cafense_admin/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_admin/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_admin/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_admin/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_admin/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_admin/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafense_mobile/.metadata" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/.metadata" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/cafense_mobile/android/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafense_mobile/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafense_mobile/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/cafense_mobile/android/build.gradle" afterDir="false" />
@@ -72,7 +79,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+<<<<<<< Updated upstream
     <property name="last_opened_file_path" value="$PROJECT_DIR$/cafense_mobile" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cafense_mobile" />
+>>>>>>> Stashed changes
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -94,9 +105,16 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="100" y="100" width="1720" height="832" key="DiffContextDialog/0.0.1920.1032/1920.0.1280.976@0.0.1920.1032" timestamp="1633713901826" />
+<<<<<<< Updated upstream
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1634827872276">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1634827872276" />
+=======
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1635020591348">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1635020591348" />
+>>>>>>> Stashed changes
   </component>
 </project>

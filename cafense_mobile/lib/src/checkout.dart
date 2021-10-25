@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cafense_mobile/widgets/button1.dart';
-import 'package:cafense_mobile/widgets/checkoutCard.dart';
 
 class checkOut extends StatefulWidget {
   const checkOut({Key? key}) : super(key: key);

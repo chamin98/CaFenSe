@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+
+import 'package:cafense_mobile/src/supNlgn/authservices.dart';
 
 class account extends StatefulWidget {
   const account({Key? key}) : super(key: key);
@@ -9,6 +12,7 @@ class account extends StatefulWidget {
 }
 
 class _accountState extends State<account> {
+  final Authservices _authservices = new Authservices();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,13 +56,13 @@ class _accountState extends State<account> {
                 ),
               ),
               accSettings("Change Account Details",
-                  () => {Navigator.pushNamed(context, '/home')}),
+                  () => {Navigator.pushNamed(context, '/orderSuccess')}),
               accSettings(
                 "Your Orders",
-                () => {Navigator.pushNamed(context, '/home')},
+                () => {Navigator.pushNamed(context, '/menu')},
               ),
               accSettings("Feedbacks", () => null),
-              accSettings("Logout", () => null),
+              accSettings("Logout", () => _authservices.signout())
             ],
           ),
         ),

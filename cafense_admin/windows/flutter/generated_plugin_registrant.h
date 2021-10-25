@@ -2,8 +2,11 @@
 //  Generated file. Do not edit.
 //
 
+<<<<<<< Updated upstream
 // clang-format off
 
+=======
+>>>>>>> Stashed changes
 #ifndef GENERATED_PLUGIN_REGISTRANT_
 #define GENERATED_PLUGIN_REGISTRANT_
 

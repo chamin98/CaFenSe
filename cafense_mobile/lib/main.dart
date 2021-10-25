@@ -1,10 +1,12 @@
+import 'package:cafense_mobile/src/menu.dart';
+import 'package:cafense_mobile/src/menuList.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cafense_mobile/src/supNlgn/authservices.dart';
-
-
+import 'package:cafense_mobile/routes.dart';
 import 'src/home.dart';
 import 'src/supNlgn/Login.dart';
 import 'src/supNlgn/Register.dart';
@@ -25,9 +27,11 @@ class MyApp extends StatelessWidget {
               value: Authservices().user, initialData: null)
         ],
         child: MaterialApp(
-            title: "Caffense",
-            theme: ThemeData(primarySwatch: Colors.amber),
-            home: Wrapper()));
+          title: "Caffense",
+          theme: ThemeData(primarySwatch: Colors.amber),
+          home: Wrapper(),
+          routes: routes,
+        ));
   }
 }
 
@@ -64,7 +68,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<User?>(context);
     if (user != null) {
-      return home();
+      return bottomNavbar();
     } else
       return Authentication();
   }

@@ -33,6 +33,12 @@ dependencies:
   cloud_firestore: ^2.5.3
   provider: ^6.0.1
   firebase_core: ^1.7.0
+  http: ^0.13.4
+  carousel_slider: ^4.0.0
+ 
+  #flutter_stripe: ^2.0.1
+  
+
 
 dev_dependencies:
   flutter_test:
