@@ -48,7 +48,7 @@ class Authservices with ChangeNotifier {
     }
     notifyListeners();
   }
-
+  
   Future resetPwrd({required String email}) async {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);

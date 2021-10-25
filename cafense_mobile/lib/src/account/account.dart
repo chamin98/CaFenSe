@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
-
+import 'package:cafense_mobile/services/authservices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:cafense_mobile/src/supNlgn/authservices.dart';
+import 'editaccdetails.dart';
 
 class account extends StatefulWidget {
   const account({Key? key}) : super(key: key);
@@ -12,9 +13,9 @@ class account extends StatefulWidget {
 }
 
 class _accountState extends State<account> {
-  final Authservices _authservices = new Authservices();
-  @override
   Widget build(BuildContext context) {
+    final authservice = Provider.of<Authservices>(context);
+    final user = Provider.of<User?>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -40,29 +41,31 @@ class _accountState extends State<account> {
                     children: [
                       CircleAvatar(
                         radius: 80.0,
-                        backgroundImage: AssetImage('assets/images/menuD.png'),
+                        backgroundImage: user!.photoURL != null
+                            ? NetworkImage(user.photoURL!)
+                            : AssetImage('assets/images/menuD.png')
+                                as ImageProvider,
                         backgroundColor: Colors.transparent,
                       ),
-                      Text(
-                        "Sam Smith",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Text(
-                        "Email@none.com",
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      )
+                      Text(user.displayName!, style: TextStyle(fontSize: 18)),
+                      Text(user.email!,
+                          style: TextStyle(fontSize: 15, color: Colors.grey))
                     ],
                   ),
                 ),
               ),
               accSettings("Change Account Details",
-                  () => {Navigator.pushNamed(context, '/orderSuccess')}),
+                  () => {showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return editAccDetails();
+                        })}),
               accSettings(
                 "Your Orders",
                 () => {Navigator.pushNamed(context, '/menu')},
               ),
               accSettings("Feedbacks", () => null),
-              accSettings("Logout", () => _authservices.signout())
+              accSettings("Logout", () => authservice.signout())
             ],
           ),
         ),
