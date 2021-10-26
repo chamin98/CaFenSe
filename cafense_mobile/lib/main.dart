@@ -1,5 +1,3 @@
-import 'package:cafense_mobile/src/menu.dart';
-import 'package:cafense_mobile/src/menuList.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';

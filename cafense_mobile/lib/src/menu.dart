@@ -62,9 +62,11 @@ class _menuState extends State<menu> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
-                            child: menuCard("menuL.png", "Lunch", context)),
+                            child: menuCard("menuL.png", "Lunch",
+                                Navigator.pushNamed(context, '/lunch'))),
                         Expanded(
-                            child: menuCard("menuB.png", "Beverages", context))
+                            child: menuCard("menuB.png", "Beverages",
+                                Navigator.pushNamed(context, '/lunch')))
                       ],
                     ),
                     SizedBox(height: 15.0),
@@ -72,10 +74,11 @@ class _menuState extends State<menu> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
-                            child:
-                                menuCard("menuS.png", "Fast Foods", context)),
+                            child: menuCard("menuS.png", "Fast Foods",
+                                Navigator.pushNamed(context, '/lunch'))),
                         Expanded(
-                            child: menuCard("menuD.png", "Desert", context)),
+                            child: menuCard("menuD.png", "Desert",
+                                Navigator.pushNamed(context, '/lunch'))),
                       ],
                     )
                   ],
@@ -134,14 +137,10 @@ Widget searchBar() => TextFormField(
       ),
     );
 
-Widget menuCard(String img, String name, context) =>
+Widget menuCard(String img, String name, _onTap) =>
     Stack(alignment: Alignment.center, children: [
       Container(
-        child: InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, '/home');
-          },
-        ),
+        child: InkWell(onTap: _onTap),
         width: 170,
         height: 200,
         decoration: BoxDecoration(

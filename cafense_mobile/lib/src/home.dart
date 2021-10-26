@@ -57,6 +57,7 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color.fromRGBO(255, 237, 222, 1),
         appBar: AppBar(
           title: Image.asset('assets/images/logo1.png'),
           backgroundColor: Color.fromRGBO(255, 237, 222, 1),
@@ -78,7 +79,7 @@ class _homeState extends State<home> {
                           ),
                         ),
                         CircleAvatar(
-                          radius: 40.0,
+                          radius: 35.0,
                           backgroundImage:
                               AssetImage('assets/images/menuD.png'),
                           backgroundColor: Colors.transparent,
@@ -87,6 +88,9 @@ class _homeState extends State<home> {
                     ),
                   ),
 
+                  SizedBox(
+                    height: 20,
+                  ),
                   //search button
                   SizedBox(
                     height: 40,
@@ -119,6 +123,9 @@ class _homeState extends State<home> {
                     ),
                   ),
 
+                  SizedBox(
+                    height: 40,
+                  ),
                   //slider
                   CarouselSlider(
                     options: CarouselOptions(

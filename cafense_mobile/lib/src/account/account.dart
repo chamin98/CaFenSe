@@ -62,7 +62,7 @@ class _accountState extends State<account> {
                         })}),
               accSettings(
                 "Your Orders",
-                () => {Navigator.pushNamed(context, '/menu')},
+                () => {Navigator.pushNamed(context, '/lunch')},
               ),
               accSettings("Feedbacks", () => null),
               accSettings("Logout", () => authservice.signout())
