@@ -122,32 +122,29 @@ class _addFoodFormState extends State<addFoodForm> {
             const Text("Add Image : "),
             ElevatedButton(
                 child: const Text('UPLOAD an Image'),
-                onPressed: () {
+                onPressed: () async {
                   _pickImage();
                 }),
             const Spacer(),
             Text(_imageFile != null ? _imageFile!.name : '')
           ]),
           const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color(0xfff07749)),
-                  onPressed: () {
-                    firebaseAddFood();
-                    Navigator.pop(context);
-                  },
-                  child: const Text("Save")),
-              const SizedBox(width: 30),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color(0xfff07749)),
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Cancel"))
-            ],
-          )
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            ElevatedButton(
+                style:
+                    ElevatedButton.styleFrom(primary: const Color(0xfff07749)),
+                onPressed: () async {
+                  await firebaseAddFood();
+                  Navigator.pop(context);
+                },
+                child: const Text("Save")),
+            const SizedBox(width: 30),
+            ElevatedButton(
+                style:
+                    ElevatedButton.styleFrom(primary: const Color(0xfff07749)),
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Cancel"))
+          ])
         ]));
   }
 
@@ -163,14 +160,16 @@ class _addFoodFormState extends State<addFoodForm> {
 
   Future _uploadFile() async {
     if (_imageFile == null) return;
-    final destination =
-        'Foods/' + _nameController!.text.trim() + ".jpeg";
+    final destination = 'Foods/' + _nameController!.text.trim() + ".jpeg";
     try {
-      String? url;
+      TaskSnapshot? x;
       await FirebaseStorage.instance
           .ref(destination)
           .putBlob(_imageFile)
-          .then((p0) => imgurl = p0.ref.getDownloadURL().toString());     
+          .then((p0) => x = p0);
+      setState(() {
+        imgurl = x!.ref.getDownloadURL() as String?;
+      });
     } on FirebaseException catch (e) {
       Fluttertoast.showToast(timeInSecForIosWeb: 30, msg: e.message!);
     }
@@ -178,7 +177,7 @@ class _addFoodFormState extends State<addFoodForm> {
 
   Future<void> firebaseAddFood() async {
     try {
-      _uploadFile();
+      await _uploadFile();
       String fname = _nameController!.text.trim();
       await FirebaseFirestore.instance
           .collection(dropdownValue!)
