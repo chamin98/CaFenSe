@@ -12,13 +12,13 @@ class OrdersCardsMediumScreen extends StatelessWidget {
       Row(children: [
         InfoCard(
           title: "Foods Sold",
-          value: "7",
+          value: "0",
           topColor: Colors.orange,
         ),
         SizedBox(width: _width / 64),
         InfoCard(
           title: "Orders Completed",
-          value: "17",
+          value: "0",
           topColor: Colors.lightGreen,
         )
       ]),
@@ -26,7 +26,7 @@ class OrdersCardsMediumScreen extends StatelessWidget {
       Row(children: [
         InfoCard(
           title: "Orders To Completey",
-          value: "3",
+          value: "0",
           topColor: Colors.redAccent,
         )
       ])
