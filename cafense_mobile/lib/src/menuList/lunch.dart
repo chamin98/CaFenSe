@@ -37,7 +37,9 @@ class _lunchState extends State<lunch> {
                     Padding(
                         padding: EdgeInsets.only(right: 20.0),
                         child: GestureDetector(
-                          onTap: () {}, // add to cart
+                          onTap: () {
+                            Navigator.pushNamed(context, '/checkout');
+                          }, // add to cart
                           child: Icon(
                             Icons.shopping_cart,
                             size: 26.0,
@@ -49,26 +51,20 @@ class _lunchState extends State<lunch> {
                   child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(children: [
-                        ListView.builder(
+                        ListView(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              /* return MenuCard(
-                                  name: FirebaseFirestore.instance
-                                      .collection('Lunch')
-                                      .id,
-                                  price: snapshot.data!.docs[index]['price'],
-                                  img: snapshot.data!.docs[index]['iurl']);*/
+                            children: snapshot.data!.docs
+                                .map((DocumentSnapshot document) {
+                              Map<String, dynamic> data =
+                                  document.data()! as Map<String, dynamic>;
 
-                              return ListTile(
-                                title: Text(FirebaseFirestore.instance
-                                    .collection('Lunch')
-                                    .id),
-                                subtitle:
-                                    Text(snapshot.data!.docs[index]['price']),
-                              );
-                            })
+                              //menucard
+                              return menuCard(
+                                  name: document.id,
+                                  price: data['price'].toString(),
+                                  image: data['iurl'].toString());
+                            }).toList())
                       ]))));
         });
   }

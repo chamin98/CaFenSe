@@ -117,7 +117,7 @@ class _paymentMethodState extends State<paymentMethod> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/orderSuccess');
+                      Navigator.pushNamed(context, '/checkout');
                     },
                     child: Padding(
                         padding: const EdgeInsets.symmetric(

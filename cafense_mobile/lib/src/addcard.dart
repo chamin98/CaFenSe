@@ -71,19 +71,13 @@ class _addCardState extends State<addCard> {
                     default_button(
                       bText: " ADD",
                       onPressed: () {
-                        Navigator.pushNamed(context, '/paymentMethod');
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                        // ignore: unused_element
+                        
+                        })
+                  ]))]))));}
+               
   }
-}
+
 
 Widget cardBar() => Stack(
       children: [

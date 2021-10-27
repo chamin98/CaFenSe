@@ -1,16 +1,56 @@
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MenuCard extends StatelessWidget {
+class menuCard extends StatefulWidget {
   final String name;
-  final int price;
-  final String img;
+  final String price;
+  final String image;
 
-  MenuCard(
-      {Key? key, required this.name, required this.price, required this.img})
+  menuCard(
+      {Key? key, required this.name, required this.image, required this.price})
       : super(key: key);
 
   @override
+  _menuCardState createState() => _menuCardState();
+}
+
+class _menuCardState extends State<menuCard> {
+  bool _haspressed = false;
+  @override
   Widget build(BuildContext context) {
+    CollectionReference favourites =
+        FirebaseFirestore.instance.collection('Favourites');
+
+    CollectionReference cart =
+        FirebaseFirestore.instance.collection('Checkout');
+
+    Future<void> addFavourites() async {
+      // Call the user's CollectionReference to add a new user
+      return favourites
+          .add({
+            document.on: widget.name,
+            'price': widget.price,
+            'iurl': widget.image
+          })
+          .then((value) => print("Favourite Added"))
+          .catchError((error) => print("Failed to add Favourite: $error"));
+    }
+
+    Future<void> addCheckout() async {
+      // Call the user's CollectionReference to add a new user
+      return cart
+          .add({
+            document.on: widget.name,
+            'price': widget.price,
+            'iurl': widget.image
+          })
+          .then((value) => print("Added to cart"))
+          .catchError((error) => print("Failed to add: $error"));
+    }
+
     return Card(
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.all(10),
@@ -22,7 +62,7 @@ class MenuCard extends StatelessWidget {
             width: 120.0,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(img),
+                  image: NetworkImage(widget.image),
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(10),
@@ -32,9 +72,9 @@ class MenuCard extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                  title: Text(name),
+                  title: Text(widget.name),
                   subtitle: Text(
-                    'LKR $price',
+                    'LKR ' + widget.price,
                     style: TextStyle(color: Colors.black.withOpacity(0.6)),
                   ),
                 ),
@@ -51,7 +91,24 @@ class MenuCard extends StatelessWidget {
                           width: 1,
                         ),
                       ),
-                      child: menuCard(),
+                      child: IconButton(
+                        icon: _haspressed
+                            ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite_border_outlined,
+                                color: Color.fromRGBO(149, 134, 168, 1),
+                              ),
+                        onPressed: () {
+                          setState(() {
+                            //add to favourite
+                            _haspressed = !_haspressed;
+                          });
+                          addFavourites();
+                        },
+                      ),
                     ),
                     Container(
                       height: 40,
@@ -61,7 +118,7 @@ class MenuCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: IconButton(
-                          onPressed: () {}, //add to cart
+                          onPressed: addCheckout, //add to cart
                           icon: Icon(
                             Icons.shopping_cart_outlined,
                             color: Color.fromRGBO(255, 255, 255, 1),
@@ -74,40 +131,6 @@ class MenuCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class menuCard extends StatefulWidget {
-  const menuCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  _menuCardState createState() => _menuCardState();
-}
-
-class _menuCardState extends State<menuCard> {
-  bool _haspressed = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: _haspressed
-          ? Icon(
-              Icons.favorite,
-              color: Colors.red,
-            )
-          : Icon(
-              Icons.favorite_border_outlined,
-              color: Color.fromRGBO(149, 134, 168, 1),
-            ),
-      onPressed: () {
-        setState(() {
-          //add to favourite
-          _haspressed = !_haspressed;
-        });
-      },
     );
   }
 }

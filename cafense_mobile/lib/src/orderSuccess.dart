@@ -66,7 +66,7 @@ class _orderSuccessState extends State<orderSuccess> {
                 child: default_button(
                   bText: " ADD MORE",
                   onPressed: () {
-                    Navigator.pushNamed(context, '/orderSuccess');
+                    Navigator.pushNamed(context, '/home');
                   },
                 ),
               )

@@ -1,3 +1,5 @@
+import 'package:cafense_mobile/src/menuList/menuCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cafense_mobile/widgets/button1.dart';
@@ -10,9 +12,13 @@ class checkOut extends StatefulWidget {
 }
 
 class _checkOutState extends State<checkOut> {
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('Checkout').snapshots();
+
   int num = 1;
   @override
   Widget build(BuildContext context) {
+    var snapshot;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -32,15 +38,25 @@ class _checkOutState extends State<checkOut> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Positioned(child: paymentDetail(context)),
-              //error
-              /*checkoutCard(        
-                  imgName: "test1.jpg", dish: "Fried \n Rice", price: 180),*/
-              paymentTotal(context),
+              ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children:
+                      snapshot.data!.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                        document.data()! as Map<String, dynamic>;
+
+                    //menucard
+                    return menuCard(
+                        name: document.id,
+                        price: data['price'].toString(),
+                        image: data['iurl'].toString());
+                  }).toList())
             ],
           ),
         ),
       ),
+      bottomNavigationBar: paymentTotal(context),
     );
   }
 }
@@ -90,7 +106,7 @@ Widget paymentDetail(context) => Container(
                   width: 10.0,
                 ),
                 Text(
-                  '**** **** **** 3269',
+                  'Cash',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Color.fromRGBO(149, 134, 168, 1),
@@ -131,7 +147,7 @@ Widget paymentTotal(context) => Container(
                     height: 1.125),
               ),
               Text(
-                'LKR 680',
+                'LKR',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 1),

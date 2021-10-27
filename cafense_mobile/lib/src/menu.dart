@@ -1,21 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class menu1 extends StatelessWidget {
-  const menu1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Image.asset('assets/images/logo1.png'),
-          backgroundColor: Color.fromRGBO(255, 237, 222, 1),
-          elevation: 0,
-        ),
-        body: new menu());
-  }
-}
-
 class menu extends StatefulWidget {
   const menu({Key? key}) : super(key: key);
 
@@ -26,73 +11,74 @@ class menu extends StatefulWidget {
 class _menuState extends State<menu> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SafeArea(
-        bottom: true,
-        child: GestureDetector(
-          onVerticalDragDown: (DragDownDetails dragDownDetails) {
-            Navigator.pushNamed(context, '/home');
-          },
-          child: Container(
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                      bottomLeft: Radius.circular(0),
-                      bottomRight: Radius.circular(0),
-                    ),
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    border: Border.all(
-                      color: Color.fromRGBO(255, 171, 92, 1),
-                      width: 4,
+    return Scaffold(
+        appBar: AppBar(
+          title: Image.asset('assets/images/logo1.png'),
+          backgroundColor: Color.fromRGBO(255, 237, 222, 1),
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            bottom: true,
+            child: Container(
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                      ),
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      border: Border.all(
+                        color: Color.fromRGBO(255, 171, 92, 1),
+                        width: 4,
+                      ),
                     ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 40.0),
-                        child: searchBar()),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            child: menuCard("menuL.png", "Lunch",
-                                Navigator.pushNamed(context, '/lunch'))),
-                        Expanded(
-                            child: menuCard("menuB.png", "Beverages",
-                                Navigator.pushNamed(context, '/lunch')))
-                      ],
-                    ),
-                    SizedBox(height: 15.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            child: menuCard("menuS.png", "Fast Foods",
-                                Navigator.pushNamed(context, '/lunch'))),
-                        Expanded(
-                            child: menuCard("menuD.png", "Desert",
-                                Navigator.pushNamed(context, '/lunch'))),
-                      ],
-                    )
-                  ],
-                )
-              ],
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 40.0),
+                          child: searchBar()),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              child: menuCard("menuL.png", "Lunch",
+                                  Navigator.pushNamed(context, '/lunch'))),
+                          Expanded(
+                              child: menuCard("menuB.png", "Beverages",
+                                  Navigator.pushNamed(context, '/beverages')))
+                        ],
+                      ),
+                      SizedBox(height: 15.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              child: menuCard("menuS.png", "Fast Foods",
+                                  Navigator.pushNamed(context, '/fastfoods'))),
+                          Expanded(
+                              child: menuCard("menuD.png", "Desert",
+                                  Navigator.pushNamed(context, '/desserts'))),
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
-Widget searchBar() => TextFormField(
+searchBar() => TextFormField(
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       style: TextStyle(
@@ -137,7 +123,7 @@ Widget searchBar() => TextFormField(
       ),
     );
 
-Widget menuCard(String img, String name, _onTap) =>
+menuCard(String img, String name, _onTap) =>
     Stack(alignment: Alignment.center, children: [
       Container(
         child: InkWell(onTap: _onTap),

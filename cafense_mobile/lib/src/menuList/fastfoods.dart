@@ -6,7 +6,9 @@ import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class fastfoods extends StatefulWidget {
-  const fastfoods({Key? key}) : super(key: key);
+  const fastfoods({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _fastfoodsState createState() => _fastfoodsState();
@@ -37,7 +39,9 @@ class _fastfoodsState extends State<fastfoods> {
                     Padding(
                         padding: EdgeInsets.only(right: 20.0),
                         child: GestureDetector(
-                          onTap: () {}, // add to cart
+                          onTap: () {
+                            Navigator.pushNamed(context, '/checkout');
+                          }, // add to cart
                           child: Icon(
                             Icons.shopping_cart,
                             size: 26.0,
@@ -49,26 +53,18 @@ class _fastfoodsState extends State<fastfoods> {
                   child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(children: [
-                        ListView.builder(
+                        ListView(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              /* return MenuCard(
-                                  name: FirebaseFirestore.instance
-                                      .collection('Lunch')
-                                      .id,
-                                  price: snapshot.data!.docs[index]['price'],
-                                  img: snapshot.data!.docs[index]['iurl']);*/
-
-                              return ListTile(
-                                title: Text(FirebaseFirestore.instance
-                                    .collection('Fast Foods')
-                                    .id),
-                                subtitle:
-                                    Text(snapshot.data!.docs[index]['price']),
-                              );
-                            })
+                            children: snapshot.data!.docs
+                                .map((DocumentSnapshot document) {
+                              Map<String, dynamic> data =
+                                  document.data()! as Map<String, dynamic>;
+                              return menuCard(
+                                  name: document.id,
+                                  image: data['iurl'].toString(),
+                                  price: data['price'].toString());
+                            }).toList())
                       ]))));
         });
   }

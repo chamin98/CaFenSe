@@ -54,12 +54,15 @@ class _accountState extends State<account> {
                   ),
                 ),
               ),
-              accSettings("Change Account Details",
-                  () => {showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return editAccDetails();
-                        })}),
+              accSettings(
+                  "Change Account Details",
+                  () => {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return editAccDetails();
+                            })
+                      }),
               accSettings(
                 "Your Orders",
                 () => {Navigator.pushNamed(context, '/lunch')},
