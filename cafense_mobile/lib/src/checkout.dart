@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cafense_mobile/widgets/button1.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class checkOut extends StatefulWidget {
   const checkOut({Key? key}) : super(key: key);
@@ -18,46 +19,71 @@ class _checkOutState extends State<checkOut> {
   int num = 1;
   @override
   Widget build(BuildContext context) {
-    var snapshot;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          "Cart",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          top: true,
-          left: true,
-          right: true,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ListView(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  children:
-                      snapshot.data!.docs.map((DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                        document.data()! as Map<String, dynamic>;
+    return StreamBuilder<QuerySnapshot>(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            Fluttertoast.showToast(
+                timeInSecForIosWeb: 30, msg: 'Something went wrong');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const LinearProgressIndicator();
+          }
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+                backgroundColor: Colors.white,
+                centerTitle: true,
+                title: Text(
+                  "Cart",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                actions: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/addcard');
+                        }, // add to cart
+                        child: Icon(
+                          Icons.credit_card_sharp,
+                          size: 26.0,
+                          color: Colors.orange,
+                        ),
+                      )),
+                ]),
+            body: SingleChildScrollView(
+              child: SafeArea(
+                top: true,
+                left: true,
+                right: true,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    paymentDetail(context),
+                    ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
 
-                    //menucard
-                    return menuCard(
-                        name: document.id,
-                        price: data['price'].toString(),
-                        image: data['iurl'].toString());
-                  }).toList())
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: paymentTotal(context),
-    );
+                          //menucard
+                          return menuCard(
+                              name: document.id,
+                              price: data['price'].toString(),
+                              image: data['iurl'].toString());
+                        }).toList())
+                  ],
+                ),
+              ),
+            ),
+            bottomNavigationBar: paymentTotal(context),
+          );
+        });
   }
 }
 

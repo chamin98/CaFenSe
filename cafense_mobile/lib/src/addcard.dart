@@ -22,62 +22,59 @@ class _addCardState extends State<addCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        centerTitle: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text(
-          'Add Card',
-          style: TextStyle(
-            color: Colors.black,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          title: Text(
+            'Add Card',
+            style: TextStyle(
+              color: Colors.black,
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          top: true,
-          child: Column(
-            children: [
-              cardBar(),
-              SizedBox(
-                height: 40,
-              ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    buildCardHname(),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    cardNumber(),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    Row(
-                      children: [
-                        validThru(),
+        body: SingleChildScrollView(
+            child: SafeArea(
+                top: true,
+                child: Column(children: [
+                  cardBar(),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(children: [
+                        buildCardHname(),
                         SizedBox(
-                          width: 30.0,
+                          height: 30.0,
                         ),
-                        cvv(),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    default_button(
-                      bText: " ADD",
-                      onPressed: () {
-                        // ignore: unused_element
-                        
-                        })
-                  ]))]))));}
-               
+                        cardNumber(),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        Row(
+                          children: [
+                            validThru(),
+                            SizedBox(
+                              width: 30.0,
+                            ),
+                            cvv(),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        default_button(
+                            bText: " ADD",
+                            onPressed: () {
+                              // ignore: unused_element
+                            })
+                      ]))
+                ]))));
   }
-
+}
 
 Widget cardBar() => Stack(
       children: [
@@ -121,6 +118,8 @@ Widget buildCardHname() => Column(
         TextFormField(
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.done,
+          validator: (value) =>
+              value!.length == 0 ? "Enter correct name" : null,
           decoration: InputDecoration(
             filled: true,
             fillColor: Color.fromRGBO(230, 216, 205, 1),
@@ -153,9 +152,11 @@ Widget cardNumber() => Column(
         SizedBox(
           height: 10.0,
         ),
-        TextField(
+        TextFormField(
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.done,
+          validator: (value) =>
+              value!.length < 10 ? "Enter Correct Card Number" : null,
           decoration: InputDecoration(
               filled: true,
               fillColor: Color.fromRGBO(230, 216, 205, 1),
@@ -189,8 +190,10 @@ Widget validThru() => Column(
         ),
         Container(
           width: 125.0,
-          child: TextField(
+          child: TextFormField(
             keyboardType: TextInputType.datetime,
+            validator: (value) =>
+                value!.length < 4 ? "Enter correct value" : null,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Color.fromRGBO(230, 216, 205, 1),
@@ -225,9 +228,10 @@ Widget cvv() => Column(
         ),
         Container(
           width: 125.0,
-          child: TextField(
+          child: TextFormField(
             keyboardType:
                 TextInputType.numberWithOptions(decimal: false, signed: true),
+            validator: (value) => value!.length < 3 ? "CVV is incorrect" : null,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Color.fromRGBO(230, 216, 205, 1),

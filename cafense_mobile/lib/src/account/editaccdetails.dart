@@ -65,7 +65,7 @@ class _editAccDetailsFormState extends State<editAccDetailsForm> {
                   floatingLabelBehavior: FloatingLabelBehavior.always)),
           SizedBox(height: 10),
           TextField(
-              controller: _nameController,
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                   labelText: "Email",
@@ -74,7 +74,6 @@ class _editAccDetailsFormState extends State<editAccDetailsForm> {
           SizedBox(height: 10),
           TextFormField(
               obscureText: true,
-              keyboardType: TextInputType.emailAddress,
               validator: (value) =>
                   value!.length < 6 ? "Password is too short" : null,
               onChanged: (value) => setState(() {

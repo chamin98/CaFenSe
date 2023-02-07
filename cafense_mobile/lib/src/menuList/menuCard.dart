@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,26 +25,19 @@ class _menuCardState extends State<menuCard> {
     CollectionReference cart =
         FirebaseFirestore.instance.collection('Checkout');
 
-    Future<void> addFavourites() async {
-      // Call the user's CollectionReference to add a new user
+    Future<void> addFavourites() {
       return favourites
-          .add({
-            document.on: widget.name,
-            'price': widget.price,
-            'iurl': widget.image
-          })
-          .then((value) => print("Favourite Added"))
-          .catchError((error) => print("Failed to add Favourite: $error"));
+          .doc(widget.name)
+          .set({'price': widget.price, 'iurl': widget.image})
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
     }
 
     Future<void> addCheckout() async {
       // Call the user's CollectionReference to add a new user
       return cart
-          .add({
-            document.on: widget.name,
-            'price': widget.price,
-            'iurl': widget.image
-          })
+          .doc(widget.name)
+          .set({'price': widget.price, 'iurl': widget.image})
           .then((value) => print("Added to cart"))
           .catchError((error) => print("Failed to add: $error"));
     }
@@ -62,7 +53,10 @@ class _menuCardState extends State<menuCard> {
             width: 120.0,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(widget.image),
+                  image: widget.image != null
+                      ? NetworkImage(widget.image)
+                      : AssetImage('assets/images/user_default.jpg')
+                          as ImageProvider,
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(10),

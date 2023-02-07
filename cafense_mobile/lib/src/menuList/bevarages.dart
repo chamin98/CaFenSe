@@ -14,7 +14,7 @@ class beverages extends StatefulWidget {
 
 class _beveragesState extends State<beverages> {
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('Beverages').snapshots();
+      FirebaseFirestore.instance.collection('Bevarages').snapshots();
 
   @override
   Widget build(BuildContext context) {

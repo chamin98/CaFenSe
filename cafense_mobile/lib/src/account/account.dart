@@ -41,7 +41,10 @@ class _accountState extends State<account> {
                     children: [
                       CircleAvatar(
                         radius: 80.0,
-                        backgroundImage: user!.photoURL != null ? NetworkImage(user.photoURL!) : AssetImage('assets/images/user_default.jpg') as ImageProvider,                              ,
+                        backgroundImage: user!.photoURL != null
+                            ? NetworkImage(user.photoURL!)
+                            : AssetImage('assets/images/user_default.jpg')
+                                as ImageProvider,
                         backgroundColor: Colors.transparent,
                       ),
                       Text(user.displayName!, style: TextStyle(fontSize: 18)),
@@ -61,8 +64,8 @@ class _accountState extends State<account> {
                             })
                       }),
               accSettings(
-                "Your Orders",
-                () => {Navigator.pushNamed(context, '/lunch')},
+                "Change Payment Method",
+                () => {Navigator.pushNamed(context, '/paymentMethod')},
               ),
               accSettings("Feedbacks", () => null),
               accSettings("Logout", () => authservice.signout())
