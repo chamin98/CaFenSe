@@ -1,8 +1,8 @@
-# cafense_mobile
+# cafense_mobile #
 
-Software Group Project-CaFense
+Software Group Project - CaFense
 
-## Getting Started
+### Getting Started ###
 
 This project is a starting point for a Flutter application.
 
